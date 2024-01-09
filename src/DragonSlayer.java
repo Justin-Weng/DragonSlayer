@@ -64,6 +64,7 @@ public class DragonSlayer {
         System.out.println("Your able to collect powerups to make yourself stronger along the way");
 
         while (currentGameKey == gameResetNumber && roomsCleared < 5) {
+            System.out.println(1);
             int chosenIdx = (int) (Math.random() * roomNames.size() + 1);
             String name = roomNames.get(chosenIdx);
             roomNames.remove(chosenIdx);
@@ -79,6 +80,8 @@ public class DragonSlayer {
 
                 if (input == 1) {
                     currentRoom.searchRoom();
+                } else if (input == 2) {
+                    currentRoom.fightDragons(plr);
                 }
             }
 

@@ -10,8 +10,10 @@ public class Player {
         sword = new Sword();
     }
 
-    public void attackDragon(Dragon dragon) {
-        dragon.takeDamage(sword.getAttackPower());
+    public int attackDragon(Dragon dragon) {
+        int damageDealt = sword.getAttackPower() * (int) ((Math.random() + 1) * 10);
+        dragon.takeDamage(damageDealt);
+        return damageDealt;
     }
 
     public void takeDamage(int damage) {
@@ -21,5 +23,9 @@ public class Player {
     public void useHealthPot() {
         hasHealthPot = false;
         health += 10;
+    }
+
+    public int getHealth() {
+        return health;
     }
 }

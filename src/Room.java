@@ -30,6 +30,30 @@ public class Room {
         }
     }
 
+    public void fightDragons(Player plr) {
+        for (int i = dragons.size(); i >= 0; i--) {
+            if (plr.getHealth() <= 0) {
+                break;
+            }
+            System.out.println("You encountered a dragon with " + dragons.get(i).gethealth() + " health");
+            while (plr.getHealth() > 0) {
+                System.out.println("You attacked the dragon and dealt " + plr.attackDragon(dragons.get(i)) + " damage");
+                if (dragons.get(i).gethealth() > 0) {
+                    System.out.println("The dragon has " + dragons.get(i).gethealth() + " health remaining");
+                    System.out.println("The dragon swings at you and deals " + dragons.get(i).attackPlayer(plr) + " damage");
+                    if (plr.getHealth() > 0) {
+                        System.out.println("You have " + plr.getHealth() + " health remaining");
+                    } else {
+                        System.out.println("You died");
+                    }
+                } else {
+                    System.out.println("You slayed the dragon!");
+                    break;
+                }
+            }
+        }
+    }
+
     public int getDragonCount() {
         return dragons.size();
     }
