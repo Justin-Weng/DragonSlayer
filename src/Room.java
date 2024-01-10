@@ -5,8 +5,10 @@ public class Room {
     private ArrayList<Dragon> dragons;
     private boolean containshealthPot;
     private boolean roomCleared;
+    private DragonSlayer dragonSlayer;
 
-    public Room(String name) {
+    public Room(String name, DragonSlayer dragonSlayer) {
+        this.dragonSlayer = dragonSlayer;
         this.name = name;
         containshealthPot = true;
         roomCleared = false;
@@ -31,7 +33,7 @@ public class Room {
     }
 
     public void fightDragons(Player plr) {
-        for (int i = dragons.size(); i >= 0; i--) {
+        for (int i = dragons.size() - 1; i >= 0; i--) {
             if (plr.getHealth() <= 0) {
                 break;
             }
@@ -45,6 +47,7 @@ public class Room {
                         System.out.println("You have " + plr.getHealth() + " health remaining");
                     } else {
                         System.out.println("You died");
+                        dragonSlayer.endGame();
                     }
                 } else {
                     System.out.println("You slayed the dragon!");
@@ -52,6 +55,8 @@ public class Room {
                 }
             }
         }
+
+        roomCleared = true;
     }
 
     public int getDragonCount() {

@@ -6,7 +6,7 @@ public class Player {
     private Sword sword;
 
     public Player() {
-        health = 100;
+        health = 1000;
         sword = new Sword();
     }
 

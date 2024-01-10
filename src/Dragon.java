@@ -3,7 +3,7 @@ public class Dragon {
     private int level;
 
     public Dragon() {
-        health = 100;
+        health = 1000;
         level = (int) (Math.random() * 3 + 1);
     }
 
@@ -20,4 +20,6 @@ public class Dragon {
         plr.takeDamage(damageDealt);
         return damageDealt;
     }
+
+
 }
