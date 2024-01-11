@@ -54,6 +54,10 @@ public class Room {
                     break;
                 }
             }
+
+            if (plr.getHealth() > 0) {
+                System.out.println("You have defeated all the dragons in this room!");
+            }
         }
 
         roomCleared = true;

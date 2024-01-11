@@ -93,6 +93,8 @@ public class DragonSlayer {
 
         if (currentGameKey == gameResetNumber) {
             System.out.println("You have defeated all the dragon in all the rooms. You win!");
+            ConsoleUtility.wait(2000);
+            endGame();
         }
     }
     
