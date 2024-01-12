@@ -22,6 +22,7 @@ public class DragonSlayer {
         System.out.println("(1) Start new game");
         System.out.println("(2) End current game");
         System.out.println("(3) View top score");
+        System.out.println("(4) Resume current game");
         System.out.println("Select an option: ");
 
         boolean endLoop = false;
@@ -36,7 +37,18 @@ public class DragonSlayer {
             } else if (input == 3) {
                 endLoop = true;
                 System.out.println("Your top score is " + highScore);
-                ConsoleUtility.wait(3000);
+                ConsoleUtility.wait(2000);
+                mainMenu();
+            } else if (input == 4) {
+                endLoop = true;
+                if (plr != null) {
+                    System.out.println("Resuming game");
+                    ConsoleUtility.wait(2000);
+                } else {
+                    System.out.println("There is no game to resume");
+                    ConsoleUtility.wait(2000);
+                    mainMenu();
+                }
             } else {
                 System.out.println("Invalid choice! Enter a different input");
             }
@@ -68,9 +80,10 @@ public class DragonSlayer {
 
             System.out.println("You stumbled into " + name + ". You see " + currentRoom.getDragonCount() + " dragons!");
             while (!currentRoom.getRoomCleared()) {
-                System.out.println("What do you want to do?");
+                System.out.println("What do you want to do in this room?");
                 System.out.println("(1) Search for a health potion");
                 System.out.println("(2) Fight the dragons");
+                System.out.println("(3) Back to main menu");
 
                 boolean endLoop = false;
                 while (!endLoop) {
@@ -82,6 +95,9 @@ public class DragonSlayer {
                     } else if (input == 2) {
                         endLoop = true;
                         currentRoom.fightDragons(plr);
+                    } else if (input == 3) {
+                        endLoop = true;
+                        mainMenu();
                     } else {
                         System.out.println("Invalid choice! Enter a different input");
                     }
@@ -94,6 +110,7 @@ public class DragonSlayer {
         if (currentGameKey == gameResetNumber) {
             System.out.println("You have defeated all the dragon in all the rooms. You win!");
             ConsoleUtility.wait(2000);
+            score = plr.getHealth() * plr.getDragonsDefeated();
             endGame();
         }
     }
@@ -107,6 +124,7 @@ public class DragonSlayer {
     }
 
     private void resetGame() {
+        highScore = Math.max(score, highScore);
         score = 0;
         plr = null;
         gameResetNumber++;

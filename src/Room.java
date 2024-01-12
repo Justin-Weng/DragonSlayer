@@ -51,6 +51,7 @@ public class Room {
                     }
                 } else {
                     System.out.println("You slayed the dragon!");
+                    plr.incrementDragonsDefeated();
                     break;
                 }
             }

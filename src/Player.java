@@ -4,10 +4,12 @@ public class Player {
     private int gold;
     private boolean hasHealthPot;
     private Sword sword;
+    private int dragonsDefeated;
 
     public Player() {
         health = 10000;
         sword = new Sword();
+        dragonsDefeated = 0;
     }
 
     public int attackDragon(Dragon dragon) {
@@ -27,5 +29,13 @@ public class Player {
 
     public int getHealth() {
         return health;
+    }
+
+    public void incrementDragonsDefeated() {
+        dragonsDefeated++;
+    }
+
+    public int getDragonsDefeated() {
+        return dragonsDefeated;
     }
 }
