@@ -16,10 +16,12 @@ public class Dragon {
     }
 
     public int attackPlayer(Player plr) {
-        int damageDealt = level * (int) ((Math.random() + 1) * 10);
-        plr.takeDamage(damageDealt);
-        return damageDealt;
+        int rand = (int) (Math.random() * 100 + 1);
+        if (rand > plr.getSword().getDodgeRating()) {
+            int damageDealt = level * (int) ((Math.random() + 1) * 10);
+            plr.takeDamage(damageDealt);
+            return damageDealt;
+        }
+        return -1;
     }
-
-
 }

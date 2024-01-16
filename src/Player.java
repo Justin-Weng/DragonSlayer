@@ -23,12 +23,23 @@ public class Player {
     }
 
     public void useHealthPot() {
-        hasHealthPot = false;
-        health += 10;
+        if (hasHealthPot) {
+            hasHealthPot = false;
+            int healthGain = (int) (Math.random() * 26 + 50);
+            heal(healthGain);
+            System.out.println("You drank your health potion and gained " + healthGain + " health");
+            System.out.println("You now have " + health + " health");
+        } else {
+            System.out.println("You dont have a health potion. Find one by searching a room");
+        }
     }
 
     public int getHealth() {
         return health;
+    }
+
+    public void heal(int heal) {
+        health += heal;
     }
 
     public void incrementDragonsDefeated() {
@@ -37,5 +48,20 @@ public class Player {
 
     public int getDragonsDefeated() {
         return dragonsDefeated;
+    }
+    public Sword getSword() {
+        return sword;
+    }
+
+    public void setGold(int newGold) {
+        gold = newGold;
+    }
+
+    public int getGold() {
+        return gold;
+    }
+
+    public void getHealthPotion() {
+        hasHealthPot = true;
     }
 }

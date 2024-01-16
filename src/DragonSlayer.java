@@ -18,7 +18,7 @@ public class DragonSlayer {
 
     private void mainMenu() {
         ConsoleUtility.clearScreen();
-        System.out.println("--------------- Main menu ---------------");
+        System.out.println(ConsoleUtility.BLUE + "--------------- Main menu ---------------" + ConsoleUtility.RESET);
         System.out.println("(1) Start new game");
         System.out.println("(2) End current game");
         System.out.println("(3) View top score");
@@ -67,9 +67,9 @@ public class DragonSlayer {
         roomNames.add("Dragon Cage");
         roomNames.add("Dragon Lair");
 
-        System.out.println("Welcome to Dragon Slayer!");
-        System.out.println("Your goal in this game is to clear all 5 rooms by defeating the dragons!");
-        System.out.println("Your able to collect powerups to make yourself stronger along the way");
+        System.out.println(ConsoleUtility.RED + "Welcome to Dragon Slayer!" + ConsoleUtility.RESET);
+        System.out.println(ConsoleUtility.YELLOW + "Your goal in this game is to clear all 5 rooms by defeating the dragons!");
+        System.out.println("Your able to collect powerups to make yourself stronger along the way" + ConsoleUtility.RESET);
 
         while (currentGameKey == gameResetNumber && roomsCleared < 5) {
             int chosenIdx = (int) (Math.random() * roomNames.size());
@@ -78,12 +78,13 @@ public class DragonSlayer {
 
             Room currentRoom = new Room(name, this);
 
-            System.out.println("You stumbled into " + name + ". You see " + currentRoom.getDragonCount() + " dragons!");
+            System.out.println(ConsoleUtility.CYAN + "You stumbled into " + name + ". You see " + currentRoom.getDragonCount() + " dragons!" + ConsoleUtility.RESET);
             while (!currentRoom.getRoomCleared()) {
-                System.out.println("What do you want to do in this room?");
+                System.out.println(ConsoleUtility.RED + "What do you want to do in this room?" + ConsoleUtility.RESET);
                 System.out.println("(1) Search for a health potion");
                 System.out.println("(2) Fight the dragons");
-                System.out.println("(3) Back to main menu");
+                System.out.println("(3) Use health potion");
+                System.out.println("(4) Back to main menu");
 
                 boolean endLoop = false;
                 while (!endLoop) {
@@ -91,12 +92,17 @@ public class DragonSlayer {
 
                     if (input == 1) {
                         endLoop = true;
-                        currentRoom.searchRoom();
+                        currentRoom.searchRoom(plr);
                     } else if (input == 2) {
                         endLoop = true;
                         currentRoom.fightDragons(plr);
                     } else if (input == 3) {
                         endLoop = true;
+                        plr.useHealthPot();
+                    } else if (input == 4) {
+                        endLoop = true;
+                        System.out.println("Returning to main menu...");
+                        ConsoleUtility.wait(2000);
                         mainMenu();
                     } else {
                         System.out.println("Invalid choice! Enter a different input");
@@ -110,7 +116,7 @@ public class DragonSlayer {
         if (currentGameKey == gameResetNumber) {
             System.out.println("You have defeated all the dragon in all the rooms. You win!");
             ConsoleUtility.wait(2000);
-            score = plr.getHealth() * plr.getDragonsDefeated();
+            score = (plr.getGold() + plr.getHealth()) * plr.getDragonsDefeated();
             endGame();
         }
     }

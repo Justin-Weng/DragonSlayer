@@ -10,4 +10,15 @@ public class Sword {
     public int getAttackPower() {
         return attackPower;
     }
+    public int getDodgeRating() {
+        return dodgeRating;
+    }
+
+    public void setAttackPower(int newAttackPower) {
+        attackPower = newAttackPower;
+    }
+
+    public void setDodgeRating(int newDodgeRating) {
+        dodgeRating = newDodgeRating;
+    }
 }
