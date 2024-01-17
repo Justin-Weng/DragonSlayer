@@ -80,6 +80,7 @@ public class DragonSlayer {
 
             System.out.println(ConsoleUtility.CYAN + "You stumbled into " + name + ". You see " + currentRoom.getDragonCount() + " dragons!" + ConsoleUtility.RESET);
             while (!currentRoom.getRoomCleared()) {
+                ConsoleUtility.clearScreen();
                 System.out.println(ConsoleUtility.RED + "What do you want to do in this room?" + ConsoleUtility.RESET);
                 System.out.println("(1) Search for a health potion");
                 System.out.println("(2) Fight the dragons");
@@ -93,12 +94,14 @@ public class DragonSlayer {
                     if (input == 1) {
                         endLoop = true;
                         currentRoom.searchRoom(plr);
+                        ConsoleUtility.wait(2000);
                     } else if (input == 2) {
                         endLoop = true;
                         currentRoom.fightDragons(plr);
                     } else if (input == 3) {
                         endLoop = true;
                         plr.useHealthPot();
+                        ConsoleUtility.wait(2000);
                     } else if (input == 4) {
                         endLoop = true;
                         System.out.println("Returning to main menu...");
@@ -106,7 +109,7 @@ public class DragonSlayer {
                         mainMenu();
                     } else {
                         System.out.println("Invalid choice! Enter a different input");
-                    }
+                        ConsoleUtility.wait(2000);              }
                 }
             }
 
