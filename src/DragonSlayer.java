@@ -98,6 +98,7 @@ public class DragonSlayer {
                     } else if (input == 2) {
                         endLoop = true;
                         currentRoom.fightDragons(plr);
+                        ConsoleUtility.wait(2000);
                     } else if (input == 3) {
                         endLoop = true;
                         plr.useHealthPot();

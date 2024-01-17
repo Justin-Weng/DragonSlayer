@@ -7,7 +7,7 @@ public class Player {
     private int dragonsDefeated;
 
     public Player() {
-        health = 10000;
+        health = 400;
         sword = new Sword();
         dragonsDefeated = 0;
     }

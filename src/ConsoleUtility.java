@@ -17,7 +17,7 @@ public class ConsoleUtility {
 
     public static void wait(int milliseconds) {
         try {
-            Thread.sleep(milliseconds / 10);
+            Thread.sleep(milliseconds);
         } catch (Exception e) {
             System.out.println("Error has occured");
         }
